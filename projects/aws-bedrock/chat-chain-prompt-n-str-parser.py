@@ -5,12 +5,12 @@ from langchain_core.output_parsers import StrOutputParser
 model = ChatBedrockConverse(model="amazon.nova-lite-v1:0")
 
 prompt =  ChatPromptTemplate.from_messages(
-         [("system", "you are a general physician."), 
+         [("system", "you are a general physician. suggest everything in 10 words."), 
           ("human", "{input}")           
          ])
 
 chain = prompt | model | StrOutputParser()
 
-response = chain.invoke({"input": "what you suggest for mild fever in 10 words."})
+response = chain.invoke({"input": "what you suggest for mild fever."})
 
 print(response)
