@@ -9,8 +9,8 @@ const promptTemplate = ChatPromptTemplate.fromMessages([
 
 ## Types of roles 
 - system
-- user 
-- assistant 
+- user (or human)
+- assistant (ai response)
 - tool 
 
 ## Types of content 
