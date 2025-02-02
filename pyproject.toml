@@ -8,6 +8,7 @@ dependencies = [
     "langchain>=0.3.14",
     "langchain-aws>=0.2.10",
     "langchain-core>=0.3.29",
+    "langchain-deepseek-official>=0.1.0",
     "langchain-openai>=0.3.0",
     "python-dotenv>=1.0.1",
 ]

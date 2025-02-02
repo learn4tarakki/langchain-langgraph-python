@@ -1,10 +1,10 @@
-from langchain_openai import ChatOpenAI
+from langchain_deepseek import ChatDeepSeek
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-model = ChatOpenAI(model="gpt-4o", api_key=os.getenv("OPENAI_API_KEY"))
+model = ChatDeepSeek(model="deepseek-chat", api_key=os.getenv("DEEPSEEK_API_KEY"))
 
 messages = [("system", "you are a general physician."), ("user", "what you suggest for mild fever in 10 words.")]
 
