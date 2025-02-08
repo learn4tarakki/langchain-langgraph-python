@@ -33,7 +33,7 @@ prompt = ChatPromptTemplate.from_messages([
 
 prompt_with_instructions = prompt.partial(format_instructions=parser.get_format_instructions())
 
-query = "Annadsdsdsdsds is 23 years old and she is 6 feet tall"
+query = "Anna is 23 years old and she is 6 feet tall"
 
 llm = ChatBedrockConverse(
     model="amazon.nova-lite-v1:0"
