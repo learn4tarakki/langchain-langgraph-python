@@ -1,3 +1,6 @@
+## Youtube Channel
+- Watch videos on [Learn4Tarakki Channel](https://www.youtube.com/channel/UCO251AKqx8iSssbN66eECLA)
+
 ## Prompt use 
 ```
 const promptTemplate = ChatPromptTemplate.fromMessages([
