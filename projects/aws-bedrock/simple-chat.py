@@ -1,4 +1,5 @@
 from langchain_aws import ChatBedrockConverse
+from devtools import debug 
 
 model = ChatBedrockConverse(model="amazon.nova-lite-v1:0")
 
@@ -8,4 +9,4 @@ messages = [("system", "you are a general physician. suggest everything in 10 wo
 
 response = model.invoke(messages)
 
-print(response.content) # we need to extract explicitly 
+debug(response) # we need to extract explicitly 
