@@ -32,7 +32,7 @@ def multiply(a: int, b: int) -> int:
 
 llm_with_tools = llm.bind_tools([add, multiply])
 
-messages = [HumanMessage("sum of 1, 2 is and multiplication of 4, 3 is")]
+messages = [HumanMessage("sum of 2, 2 is and multiplication of 4, 3 is")]
 
 response = llm_with_tools.invoke(messages) 
 
