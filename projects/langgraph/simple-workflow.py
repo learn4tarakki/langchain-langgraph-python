@@ -1,38 +1,36 @@
-from typing_extensions import TypedDict, Annotated
+from typing_extensions import TypedDict
 from langgraph.graph import StateGraph, START, END
 from IPython.display import Image, display
 
-def reducer(a: list, b: int | None) -> list:
-    if b is not None: 
-       return a + [b]
-    return a     
-
 class State(TypedDict):
-    messages: Annotated[list, reducer]
-
+    number1: int
+    number2: int 
+    result: int 
 
 graph = StateGraph(State)
 
-def add(num1: int, num2: int) -> int: 
-    return num1 + num2 
+def add(state: State) -> State:
+    result = state["number1"] + state["number2"]
+    return { "result": result } 
 
 
-def print(a: str) -> None: 
-    print(a) 
+def show(state: State) -> None:
+    print(f"Addition of {state['number1']} & {state['number2']} is {state['result']}")
 
 
-graph.add_node('addition', add)
-graph.add_node('printing', print)
+graph.add_node('add', add)
+graph.add_node('show', show)
 
-graph.add_edge(START, 'addition')
-graph.add_edge('addition', 'printing')
-graph.add_edge('printing', END)
+graph.add_edge(START, 'add')
+graph.add_edge('add', 'show')
+graph.add_edge('show', END)
 
 compiled = graph.compile()
+
+compiled.invoke({"number1":1, "number2":2})
 
 try:
     display(Image(compiled.get_graph().draw_mermaid_png()))
 except Exception:
     # This requires some extra dependencies and is optional
     pass
-

@@ -1,7 +1,7 @@
 ### Youtube Channel
 - Watch videos on [Learn4Tarakki Channel](https://www.youtube.com/channel/UCO251AKqx8iSssbN66eECLA)
 
-### Support Jupyter within VSCode
+### Support Jupyter within VSCode 
 - Adding support for .
   - uv add --dev ipykernel
   - uv add --dev uv
@@ -10,6 +10,7 @@
     - to run, same in hosted google colab, remove prefix `!uv` from installation commands
     - if you still want to impact both .venv and pyproject.toml file, then
       - !uv add langgraph
+  - Imp. - to avoid jupyter cache, use Restart option in top menu    
 
 ### How Agent works in LangGraph
   - LangGraph implemented ReAct Agent Reference Paper with some modifications in prebuilt - create_react_agent
