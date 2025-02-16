@@ -1,7 +1,7 @@
-## Youtube Channel
+### Youtube Channel
 - Watch videos on [Learn4Tarakki Channel](https://www.youtube.com/channel/UCO251AKqx8iSssbN66eECLA)
 
-## Support Jupyter within VSCode
+### Support Jupyter within VSCode
 - Adding support for .
   - uv add --dev ipykernel
   - uv add --dev uv
@@ -37,8 +37,7 @@
     "output": messages["messages"][-1].content,
   }
   ```
-
-## Prompt use 
+### Prompt use 
 ```
 const promptTemplate = ChatPromptTemplate.fromMessages([
   ["system","You are an expert"],
@@ -46,13 +45,13 @@ const promptTemplate = ChatPromptTemplate.fromMessages([
 ]);
 
 ```
-## Types of roles 
+### Types of roles 
 - system
 - user (or human)
 - assistant (ai response)
 - tool 
 
-## Types of content 
+### Types of content 
 - SystemMessage: corresponds to system role - not all models support it. so, better stick with HumanMessage 
 - HumanMessage: corresponds to user role
 - AIMessage: corresponds to assistant role (response from llm)
@@ -60,9 +59,9 @@ const promptTemplate = ChatPromptTemplate.fromMessages([
 - ToolMessage: corresponds to tool role
 - RemoveMessage - only by LangGraph to manage chat history
 
-## Common Approach
+### Common Approach
 ```
 from langchain_core.messages import HumanMessage
 
 model.invoke([HumanMessage(content="Hello, how are you?")])
-```
+```   
