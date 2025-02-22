@@ -104,7 +104,7 @@ graph.add_edge("print_balance", END)
 graph.add_edge("failure", END)
 
 
-compiled = graph.compile()
+compiled_graph = graph.compile()
 
 initial_state = State(
     accounts=[{"accountId": "a1", "balance": 200}, {"accountId": "a2", "balance": 100}],
@@ -112,10 +112,10 @@ initial_state = State(
     tranxStatus={"failed": None, "code": None},
 )
 
-compiled.invoke(initial_state)
+compiled_graph.invoke(initial_state)
 
 try:
-    display(Image(compiled.get_graph().draw_mermaid_png()))
+    display(Image(compiled_graph.get_graph().draw_mermaid_png()))
 except Exception:
     # This requires some extra dependencies and is optional
     pass

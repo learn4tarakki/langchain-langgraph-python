@@ -28,12 +28,12 @@ graph.add_edge(START, "add")
 graph.add_edge("add", "show")
 graph.add_edge("show", END)
 
-compiled = graph.compile()
+compiled_graph = graph.compile()
 
-compiled.invoke({"number1": 1, "number2": 2})
+compiled_graph.invoke({"number1": 1, "number2": 2})
 
 try:
-    display(Image(compiled.get_graph().draw_mermaid_png()))
+    display(Image(compiled_graph.get_graph().draw_mermaid_png()))
 except Exception:
     # This requires some extra dependencies and is optional
     pass
