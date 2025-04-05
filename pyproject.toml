@@ -9,6 +9,7 @@ dependencies = [
     "duckduckgo-search>=7.3.2",
     "langchain>=0.3.14",
     "langchain-aws>=0.2.10",
+    "langchain-community>=0.3.17",
     "langchain-core>=0.3.29",
     "langchain-deepseek-official>=0.1.0",
     "langchain-ollama>=0.2.3",
@@ -16,6 +17,7 @@ dependencies = [
     "langgraph>=0.2.73",
     "ollama>=0.4.7",
     "python-dotenv>=1.0.1",
+    "tavily-python>=0.5.1",
 ]
 
 [dependency-groups]

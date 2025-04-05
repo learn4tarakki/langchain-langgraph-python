@@ -66,3 +66,29 @@ from langchain_core.messages import HumanMessage
 
 model.invoke([HumanMessage(content="Hello, how are you?")])
 ```   
+
+### Streaming 
+- Stream mode - values, here Chunks are [State1, State2, State3], State1 is complete new state after Node1, similarly for State2 
+  - In case of Pre-built Agent, Graph State is {messages:[]}, hence new states keep having additional message and 
+    - Chunks are: 
+      - State1 -> {messages:[HumanMessage(content='what is the weather in sf', additional_kwargs={}, response_metadata={}, id='<UUID>')]}
+      - State2 -> {messages:[HumanMessage(content='what is the weather in sf', <other args>), AIMessage(content='<RESPONSE CONTENT>', <other args>)]}
+```
+for chunk in graph.stream({"topic": "ice cream"},stream_mode="values",):
+    print(chunk)
+```
+- Stream mode - updates, here Chunks are [State updation by Node 1, State updation by Node 2], State updation means only portion of state, updated by Node  
+```
+for chunk in graph.stream({"topic": "ice cream"},stream_mode="updates",):
+    print(chunk)
+```
+- Stream mode - messages, here Chunks are only of AIMessage, but token by token and [AIMessage1 Chunk1, AIMessage1 Chunk2, AIMessage2 Chunk1], here AIMessage get chunked into multiple, so the content will come in parts. Each of chunk comes with metadata as well. 
+  - Example - AIMessage(content='It's always sunny in sf') will comes as: 
+      -  AIMessage(content='It's')
+      -  AIMessage(content='always')
+      - and so on..  
+```
+for message_chunk, metadata in graph.stream({"topic": "ice cream"},stream_mode="messages",):
+    if message_chunk.content:
+        print(message_chunk.content, end="|", flush=True)
+```

@@ -50,6 +50,13 @@ compiled_graph = graph.compile()
 
 compiled_graph.invoke({"input": "Hey! I am original string."})
 
+# Streaming - mode="values" - prints entire State at each step
+# for chunk in compiled_graph.stream(
+#     {"input": "Hey! I am original string."},
+#     stream_mode="values",
+# ):
+#     print(chunk)
+
 try:
     display(Image(compiled_graph.get_graph().draw_mermaid_png()))
 except Exception:
