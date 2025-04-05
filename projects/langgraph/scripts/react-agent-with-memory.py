@@ -32,12 +32,15 @@ graph = create_react_agent(model, tools=tools, checkpointer=memory)
 
 inputs = {"messages": [("user", "what is the weather in sf")]}
 
-# messages: [HumanMessage], 
-# messages: [HumanMessage, AIMessage], 
-# messages: [HumanMessage, AIMessage, ToolMessage], 
-# messages: [HumanMessage, AIMessage, ToolMessage, AIMessage]
-# messages: [HumanMessage, AIMessage, ToolMessage, AIMessage, HumanMessage]
-# messages: [HumanMessage, AIMessage, ToolMessage, AIMessage, HumanMessage, AIMessage]
+# State at every interaction: 
+    # Interaction 1
+        # messages: [HumanMessage], 
+        # messages: [HumanMessage, AIMessage], 
+        # messages: [HumanMessage, AIMessage, ToolMessage], 
+        # messages: [HumanMessage, AIMessage, ToolMessage, AIMessage]
+    # Interaction 2
+        # messages: [HumanMessage, AIMessage, ToolMessage, AIMessage, HumanMessage]
+        # messages: [HumanMessage, AIMessage, ToolMessage, AIMessage, HumanMessage, AIMessage]
 def print_stream(stream):
     for s in stream:
         message = s["messages"][-1]

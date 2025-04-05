@@ -23,23 +23,28 @@ def get_weather(city: Literal["nyc", "sf"]):
 
 tools = [get_weather]
 
-graph = create_react_agent(model, tools=tools)
+graph = create_react_agent(model, tools=tools)  # Initial State is { messages: [] }
 
 inputs = {"messages": [("user", "what is the weather in sf")]}
 
-# messages: [HumanMessage], 
-# messages: [HumanMessage, AIMessage], 
-# messages: [HumanMessage, AIMessage, ToolMessage], 
-# messages: [HumanMessage, AIMessage, ToolMessage, AIMessage]
-def print_stream(stream):
-    for s in stream:
-        message = s["messages"][-1]
-        if isinstance(message, tuple):
-            print(message)
-        else:
-            message.pretty_print()
+# Invoke approach, here last message is AIMessage
+res = graph.invoke(inputs)
+print(res["messages"][-1].content)
 
-print_stream(graph.stream(inputs, stream_mode="values"))
+# State at every interaction: 
+    # messages: [HumanMessage], 
+    # messages: [HumanMessage, AIMessage], 
+    # messages: [HumanMessage, AIMessage, ToolMessage], 
+    # messages: [HumanMessage, AIMessage, ToolMessage, AIMessage]
+# def print_stream(stream):
+#     for s in stream:
+#         message = s["messages"][-1]
+#         if isinstance(message, tuple):
+#             print(message)
+#         else:
+#             message.pretty_print()
+
+# print_stream(graph.stream(inputs, stream_mode="values"))
 
 # to demo, that it does not retain last conversation, without using memory and thread config
 # inputs = {"messages": [("user", "What's it known for?")]}
