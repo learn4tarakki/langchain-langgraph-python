@@ -12,15 +12,14 @@ load_dotenv()
 model = ChatOpenAI(model="gpt-4o", api_key=os.getenv("OPENAI_API_KEY"))
 
 @tool
-def get_weather(city: Literal["nyc", "sf"]):
-    """Use this to get weather information."""
-    if city == "nyc":
+def get_weather(location: str):
+    """Use this to get weather information from a given location."""
+    if location.lower() in ["nyc", "new york"]:
         return "It might be cloudy in nyc"
-    elif city == "sf":
+    elif location.lower() in ["sf", "san francisco"]:
         return "It's always sunny in sf"
     else:
-        raise AssertionError("Unknown city")
-
+        raise AssertionError("Unknown Location")
 
 tools = [get_weather]
 
