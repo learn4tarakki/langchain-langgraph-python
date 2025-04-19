@@ -113,6 +113,6 @@ for message_chunk, metadata in graph.stream({"topic": "ice cream"},stream_mode="
       - 3rd node for having code to interrupt using interrupt() - AskHuman Node 
       - add conditional edge to invoke AskHuman Node so that we can interrupt (before / after specific tool call or for asking additional details from human, etc) 
       - then invoke the graph
-      - interruption happen automatically 
+      - interruption happen automatically when condition met in conditional edge
       - collect `user input` using input() function  
       - finally, resume graph using Command(resume=<`user input`>) // this will resume graph execution from AskHuman node function from beginning and supply this user input to variable holding interrupt() function  
