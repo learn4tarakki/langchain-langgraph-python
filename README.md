@@ -92,3 +92,25 @@ for message_chunk, metadata in graph.stream({"topic": "ice cream"},stream_mode="
     if message_chunk.content:
         print(message_chunk.content, end="|", flush=True)
 ```
+
+### Human in the loop 
+- Approach
+  - interrupt & collect input using interrupt() and then resume using Command(resume=<User Input>) 
+- Scenarios
+  - Re-Act Agent (Prebuilt) - interrupt every tool call 
+    - use interrupt_before / interrupt_after params of create_react_agent to interrupt before and after tool call. 
+    - here, interrupt is not tool specific, it interrupt before or after every tool call
+    - then collect, manipulate & resume:
+       - collect user input using input()
+       - manipulate last message in state and 
+       - resume using:  
+          - graph.update_state(config, {"messages": [last_message]})
+          - print_stream(graph.stream(None, config, stream_mode="values"))  
+  - Re-Act Agent (Prebuilt) - interrupt on specific tool (do not use interrupt_before or interrupt_after) / Custom Agent  
+    - create custom graph   
+      - 1st node for re-act agent or custom Agent - Agent Node 
+      - 2nd node act as toolnode for re-act or custom agent which won't be interrupted - ToolNode (holds tools)
+      - 3rd node for having code to interrupt & collect user input using interrupt() - AskHuman Node 
+      - add conditional edge to invoke AskHuman Node so that we can interrupt and ask for user input 
+      - then invoke graph 
+      - finally, resume graph using Command(resume=<User Input>), here User Input is one that we collected from user when interruption happened
