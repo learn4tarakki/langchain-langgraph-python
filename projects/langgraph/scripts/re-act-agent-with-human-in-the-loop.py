@@ -43,14 +43,16 @@ print_stream(graph.stream(inputs, config=config, stream_mode="values"))
 snapshot = graph.get_state(config)
 print("Next step: ", snapshot.next)
 
-# to continue with affirmation 
-# print_stream(graph.stream(None, config, stream_mode="values"))
-
-# to adjust state as per human input and then continue
-state = graph.get_state(config)
-
-last_message = state.values["messages"][-1]
-last_message.tool_calls[0]["args"] = {"location": "San Francisco"} # instead of directly manipulating, we can use input() to aks input from user 
-
-graph.update_state(config, {"messages": [last_message]})
+###################################### CONTINUE with Affirmation ##############################
 print_stream(graph.stream(None, config, stream_mode="values"))
+###############################################################################################
+
+####################################### UPDATE STATE & RESUME #################################
+# state = graph.get_state(config)
+
+# last_message = state.values["messages"][-1]
+# last_message.tool_calls[0]["args"] = {"location": "San Francisco"} # instead of directly manipulating, we can use input() to ask input from user / human
+
+# graph.update_state(config, {"messages": [last_message]})
+# print_stream(graph.stream(None, config, stream_mode="values"))
+################################################################################################  
