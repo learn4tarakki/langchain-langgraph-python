@@ -11,7 +11,7 @@ async def main():
         {
             "math": {
                 "command": "python",
-                # Make sure to update to the full absolute path to your math_server.py file
+                # Make sure to update to the full absolute path to your math server python file
                 "args": ["/home/ubu/Documents/work/l4t/ai-python-series/langchain-langgraph-python/projects/langgraph/scripts/mcp/mcp-tool-server1.py"],
                 "transport": "stdio",
             },
